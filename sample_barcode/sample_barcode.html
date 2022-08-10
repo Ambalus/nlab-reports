@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @font-face {
+            font-family: 'Ubuntu';
+            src: url(Ubuntu.ttf);
+            font-weight: normal;
+            font-style: normal;
+        }
+        * {
+            margin: 0mm;
+        }
+        .content {
+<!--            border: solid 1px black;-->
+            margin: 0mm;
+        }
+        div {
+            display: inline-block;
+            text-align: center;
+        }
+        p {
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: center;
+            font-family: Ubuntu;
+            font-size: 3mm;
+        }
+        img {
+            width: 30mm;
+            height: 10mm;
+        }
+        @page {
+            margin: 0;
+            size: 30mm 20mm;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <p func="getPatientName">Тестов ТТ</p>
+    <div func="getBarcode">
+        <img src="data:image/png;base64,
+        iVBORw0KGgoAAAANSUhEUgAAAPIAAAAYCAYAAADAt6BAAAAAuUlEQVR42u3TSQoAIQwEQP//ab0H
+        xHYZmEMFvKhxi9Xa++il1f7Z/HTd2T7p+Gre7n3SvDQ/zbvd56s63L7fad3Sc6T/MX2v0zr9PkAG
+        GWSQQQYZZJBBBhlkkEEGGWSQQQYZZJBBBhlkkEEGGWSQQQYZZJBBBhlkkEEGGWSQQQYZZJBBBhlk
+        kEEGGWSQQQYZZJBBBhlkkEEGGWSQQQYZZJBBBhlkkEEGGWSQQQYZZJBBBhlkkEEGucQAGmXVtyVL
+        t2kAAAAASUVORK5CYII="/>
+    </div>
+    <p func="getIds">0123456789</p>
+</div>
+</body>
+</html>

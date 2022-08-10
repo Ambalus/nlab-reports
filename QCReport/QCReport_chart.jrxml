@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2021-10-25T16:50:44 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QCReport_chart2" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b59cd15a-9a20-4a5d-84ad-6bd4a90d1b41">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OracleJDBCAdapter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="SERIES_ID" class="java.lang.String"/>
+	<parameter name="LINE_COUNT" class="java.math.BigDecimal"/>
+	<queryString>
+		<![CDATA[SELECT rownum AS row_num
+      , res.*
+  FROM (SELECT r.dat AS result_date
+              ,r.value AS result_value
+              ,rs.x AS result_x
+              ,rs.s AS result_s
+              ,(SELECT MIN(r.value)
+                  FROM qc_result r
+                 WHERE r.series_id IN ($P{SERIES_ID})) AS min_value
+              ,(SELECT MAX(r.value)
+                  FROM qc_result r
+                 WHERE r.series_id IN ($P{SERIES_ID})) AS max_value
+          FROM qc_result r
+          JOIN qc_result_series rs
+            ON r.series_id = rs.id
+         WHERE r.series_id IN ($P{SERIES_ID})
+         ORDER BY result_date) res]]>
+	</queryString>
+	<field name="ROW_NUM" class="java.math.BigDecimal"/>
+	<field name="RESULT_DATE" class="java.sql.Timestamp"/>
+	<field name="RESULT_VALUE" class="java.math.BigDecimal"/>
+	<field name="RESULT_X" class="java.math.BigDecimal"/>
+	<field name="RESULT_S" class="java.math.BigDecimal"/>
+	<field name="MIN_VALUE" class="java.math.BigDecimal"/>
+	<field name="MAX_VALUE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="400" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<xyLineChart>
+				<chart isShowLegend="false" evaluationTime="Report">
+					<reportElement x="0" y="20" width="535" height="360" uuid="77423b93-aa29-49f7-a4d8-ebc9768a9de5">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<chartTitle>
+						<font fontName="Arial"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font fontName="Arial"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font fontName="Arial"/>
+					</chartLegend>
+				</chart>
+				<xyDataset>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["X"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["1S"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.add($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["1S "]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.subtract($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["2S"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.add($F{RESULT_S}).add($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["2S "]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.subtract($F{RESULT_S}).subtract($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["3S"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.add($F{RESULT_S}).add($F{RESULT_S}).add($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["3S "]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}.compareTo(new BigDecimal(2)) < 0 ? -1 : $P{LINE_COUNT}.add(new BigDecimal(2))]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_X}.subtract($F{RESULT_S}).subtract($F{RESULT_S}).subtract($F{RESULT_S})]]></yValueExpression>
+					</xySeries>
+					<xySeries autoSort="true">
+						<seriesExpression><![CDATA["RESULT"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{ROW_NUM}]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{RESULT_VALUE}]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<linePlot isShowLines="true" isShowShapes="true">
+					<plot backgroundAlpha="1.0" foregroundAlpha="1.0">
+						<seriesColor seriesOrder="0" color="#333333"/>
+						<seriesColor seriesOrder="1" color="#CCCCCC"/>
+						<seriesColor seriesOrder="2" color="#CCCCCC"/>
+						<seriesColor seriesOrder="3" color="#999999"/>
+						<seriesColor seriesOrder="4" color="#999999"/>
+						<seriesColor seriesOrder="5" color="#666666"/>
+						<seriesColor seriesOrder="6" color="#666666"/>
+						<seriesColor seriesOrder="7" color="#000000"/>
+					</plot>
+					<categoryAxisFormat>
+						<axisFormat tickLabelMask="#" axisLineColor="#000000">
+							<labelFont>
+								<font fontName="Arial"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat axisLineColor="#000000">
+							<labelFont>
+								<font fontName="Arial"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+					<domainAxisMinValueExpression><![CDATA[0.5]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[$P{LINE_COUNT}.add(new BigDecimal(0.5))]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[$F{RESULT_X}.subtract( $F{RESULT_S}.multiply( new BigDecimal(3))).compareTo($F{MIN_VALUE}) < 0 ? $F{RESULT_X}.subtract( $F{RESULT_S}.multiply( new BigDecimal(4) ) ) : $F{MIN_VALUE}.subtract($F{RESULT_S})]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[$F{RESULT_X}.add( $F{RESULT_S}.multiply( new BigDecimal(3))).compareTo($F{MAX_VALUE}) > 0 ? $F{RESULT_X}.add( $F{RESULT_S}.multiply( new BigDecimal(4) ) ) : $F{MAX_VALUE}.add($F{RESULT_S})]]></rangeAxisMaxValueExpression>
+				</linePlot>
+			</xyLineChart>
+			<staticText>
+				<reportElement x="520" y="181" width="35" height="19" uuid="dc3072f0-58e7-4cf1-bbf7-22b9c38c623b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xcp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="140" width="35" height="19" uuid="deddc2da-3da8-417a-912a-e6e8eb63663d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="98" width="35" height="19" uuid="26030a47-db20-49ee-ba26-e88befca3fc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="55" width="35" height="19" uuid="4a3e6c27-4054-4c4f-a54b-73d4d65ea363"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="309" width="35" height="19" uuid="9b909868-0c5b-4e64-a21b-38037e330579"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="268" width="35" height="19" uuid="dbaf789b-643e-45ad-8574-af6908482883"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="225" width="35" height="19" uuid="fcc2a126-2028-4037-ad4b-571b1df9cd4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1S]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

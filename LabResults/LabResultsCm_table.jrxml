@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2021-09-23T17:50:32 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LabResultsCm_table" pageWidth="554" pageHeight="842" columnWidth="554" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="5fd1c3b3-6a59-4f41-aca0-870a05732b35">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="data_adapter\etalon.nlab.xml"/>
+	<parameter name="LAB_SAMPLE_ID" class="java.lang.String"/>
+	<parameter name="ROOT_REPORT_PATH" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT TR.PATHOLOGY_STATUS        AS PAT_LEVEL
+     , TR.TEXT                    AS WR_TEXT
+     , TG.TEXT                    AS WR_TITLE
+     , TR.VALUE
+     , TR.UNITS                   AS UNIT
+     , (SELECT N.TEXT
+          FROM NORM N
+         WHERE N.ID = TR.NORM_ID) AS NORM_TEXT
+     , ''                         AS NORM_NOTE
+     , TR.NOTE                    AS RESULT_NOTE
+     , NULL                       AS FORM_RESULT_ID
+  FROM TEST_RESULT TR
+     JOIN LAB_TEST LT ON TR.LAB_TEST_ID = LT.ID
+     LEFT JOIN TEST_GROUP TG ON LT.TEST_GROUP_ID = TG.ID
+ WHERE TR.LAB_SAMPLE_ID = to_number($P{LAB_SAMPLE_ID})
+   AND TR.SUPPRESS_STATUS = 0
+   AND TR.VALIDATION_STATUS = 1
+   AND EXISTS (SELECT DISTINCT ST.SERV_ID
+     FROM SERV_TEST ST
+     WHERE ST.TEST_ID = TR.LAB_TEST_ID
+     INTERSECT
+     SELECT DISTINCT ST0.SERV_ID
+     FROM SERV_TEST ST0
+     , TEST_RESULT TR0
+     WHERE TR0.LAB_SAMPLE_ID = TR.LAB_SAMPLE_ID
+   AND TR0.LAB_TEST_ID = ST0.TEST_ID
+   AND TR0.SUPPRESS_STATUS = 0
+   AND (TR0.OPTIONAL_STATUS = 0
+    OR (TR0.VALUE IS NOT NULL))
+     GROUP BY ST0.SERV_ID
+     HAVING MIN (TR0.VALIDATION_STATUS) = 1)
+ ORDER BY TG.VIEW_SORTCODE NULLS FIRST, LT.VIEW_SORTCODE]]>
+	</queryString>
+	<field name="PAT_LEVEL" class="java.lang.Integer"/>
+	<field name="WR_TEXT" class="java.lang.String"/>
+	<field name="WR_TITLE" class="java.lang.String"/>
+	<field name="VALUE" class="java.lang.String"/>
+	<field name="UNIT" class="java.lang.String"/>
+	<field name="NORM_TEXT" class="java.lang.String"/>
+	<field name="NORM_NOTE" class="java.lang.String"/>
+	<field name="RESULT_NOTE" class="java.lang.String"/>
+	<field name="FORM_RESULT_ID" class="java.lang.String"/>
+	<variable name="WR_TITLE" class="java.lang.String">
+		<variableExpression><![CDATA[EQUALS($F{WR_TITLE}, $V{PREV_WR_TITLE}) ? "" : $F{WR_TITLE}]]></variableExpression>
+	</variable>
+	<variable name="PREV_WR_TITLE" class="java.lang.String" incrementType="Report">
+		<variableExpression><![CDATA[$F{WR_TITLE}]]></variableExpression>
+	</variable>
+	<variable name="PROTOCOL_TITLE" class="java.lang.String">
+		<variableExpression><![CDATA[EQUALS($F{WR_TEXT}, $V{PREV_PROTOCOL_TITLE}) ? "" : $F{WR_TEXT}]]></variableExpression>
+	</variable>
+	<variable name="PREV_PROTOCOL_TITLE" class="java.lang.String">
+		<variableExpression><![CDATA[$F{WR_TEXT}]]></variableExpression>
+	</variable>
+	<variable name="PROTOCOL_RESULT_NOTE" class="java.lang.String">
+		<variableExpression><![CDATA[$V{PREV_FORM_RESULT_ID} != null && $F{FORM_RESULT_ID} == null ? $V{PREV_RESULT_NOTE} : ""]]></variableExpression>
+	</variable>
+	<variable name="PREV_FORM_RESULT_ID" class="java.lang.String">
+		<variableExpression><![CDATA[$F{FORM_RESULT_ID}]]></variableExpression>
+	</variable>
+	<variable name="PREV_RESULT_NOTE" class="java.lang.String">
+		<variableExpression><![CDATA[$F{RESULT_NOTE}]]></variableExpression>
+	</variable>
+	<variable name="WR_TEXT" class="java.lang.String">
+		<variableExpression><![CDATA[$V{PREV_WR_TEXT}.equals($F{WR_TEXT}) ? "" : $F{WR_TEXT}]]></variableExpression>
+	</variable>
+	<variable name="PREV_WR_TEXT" class="java.lang.String">
+		<variableExpression><![CDATA[$F{WR_TEXT}]]></variableExpression>
+		<initialValueExpression><![CDATA[""]]></initialValueExpression>
+	</variable>
+	<detail>
+		<band height="24" splitType="Prevent">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<subreport>
+				<reportElement key="" positionType="Float" x="0" y="12" width="553" height="12" isRemoveLineWhenBlank="true" uuid="d2cd74a2-9451-4465-914a-72d3f3ccaf4f">
+					<printWhenExpression><![CDATA[$F{FORM_RESULT_ID} == null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="PAT_LEVEL">
+					<subreportParameterExpression><![CDATA[$F{PAT_LEVEL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="WR_TEXT">
+					<subreportParameterExpression><![CDATA[$V{WR_TEXT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="WR_TITLE">
+					<subreportParameterExpression><![CDATA[$V{WR_TITLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="VALUE">
+					<subreportParameterExpression><![CDATA[$F{VALUE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="UNIT">
+					<subreportParameterExpression><![CDATA[$F{UNIT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NORM_TEXT">
+					<subreportParameterExpression><![CDATA[$F{NORM_TEXT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NORM_NOTE">
+					<subreportParameterExpression><![CDATA[$F{NORM_NOTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ROOT_REPORT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_REPORT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RESULT_NOTE">
+					<subreportParameterExpression><![CDATA[$F{RESULT_NOTE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{ROOT_REPORT_PATH} + "LabResultsCm_table_row_res.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Transparent" x="0" y="0" width="553" height="12" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="22f1f1ad-f0dc-4c6e-8918-b430dffe9298"/>
+				<box padding="0" topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{WR_TITLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

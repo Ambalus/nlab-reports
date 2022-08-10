@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="title" fontName="Tahoma" fontSize="10" isBold="true"/>
+	<style name="lpuName" fontName="Tahoma" fontSize="10" isBold="true" hTextAlign="Center" vTextAlign="Top"/>
+	<style name="labDepTitle" hTextAlign="Center" vTextAlign="Top" fontName="Tahoma" fontSize="10"/>
+	<style name="date" hTextAlign="Center" vTextAlign="Top" fontName="Tahoma" fontSize="9"/>
+	<style name="hAlignLeft" hTextAlign="Left" vTextAlign="Top" fontName="Tahoma" fontSize="7"/>
+	<style name="workplace" hTextAlign="Center" vTextAlign="Top" fontName="Tahoma" fontSize="8" isBold="true">
+		<box>
+			<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+		</box>
+		<paragraph lineSpacing="Proportional" leftIndent="3" rightIndent="3"/>
+	</style>
+	<style name="serv" hTextAlign="Left" vTextAlign="Top" fontName="Tahoma" fontSize="8">
+    	<box>
+			<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0" lineStyle="Solid" lineColor = "#ffffff"/>
+			<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+    	</box>
+    		<paragraph lineSpacing="Proportional" leftIndent="3" rightIndent="3"/>
+    </style>
+	<style name="ids" hTextAlign="Left" vTextAlign="Top" fontName="Tahoma" fontSize="7">
+    	<box>
+			<topPen lineWidth="0" lineStyle="Solid" lineColor = "#ffffff"/>
+			<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0" lineStyle="Solid" lineColor = "#ffffff"/>
+			<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+    	</box>
+    		<paragraph lineSpacing="Proportional" leftIndent="3" rightIndent="3"/>
+    </style>
+	<style name="idsLast" hTextAlign="Left" vTextAlign="Top" fontName="Tahoma" fontSize="7">
+    	<box>
+			<topPen lineWidth="0" lineStyle="Solid" lineColor = "#ffffff"/>
+			<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+    	</box>
+    		<paragraph lineSpacing="Proportional" leftIndent="3" rightIndent="3"/>
+    </style>
+	<style name="tableVal" vTextAlign="Middle" fontName="Tahoma" fontSize="6">
+		<box>
+			<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+			<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#828282"/>
+		</box>
+		<paragraph lineSpacing="Proportional" leftIndent="3" rightIndent="3"/>
+	</style>
+	<style name="_header" fontName="Tahoma" fontSize="6"/>
+	<style name="_footer" fontName="Tahoma" fontSize="6"/>
+	<style name="tableHeader" hTextAlign="Center" vTextAlign="Middle" fontName="Tahoma" fontSize="6" isBold="true">
+		<box>
+			<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#828282"/>
+			<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#828282"/>
+			<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#828282"/>
+			<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#828282"/>
+		</box>
+		<paragraph lineSpacing="Single" leftIndent="0" rightIndent="0"/>
+	</style>
+	<style name="num" hTextAlign="Center" vTextAlign="Middle" fontName="Tahoma" fontSize="7">
+		<box>
+			<topPen lineWidth="0.2" lineColor="#828282"/>
+			<leftPen lineWidth="0.2" lineColor="#828282"/>
+			<bottomPen lineWidth="0.2" lineColor="#828282"/>
+			<rightPen lineWidth="0.2" lineColor="#828282"/>
+		</box>
+		<paragraph leftIndent="0" rightIndent="0"/>
+	</style>
+</jasperTemplate>

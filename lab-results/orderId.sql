@@ -1,0 +1,1 @@
+select max(lr.lab_order_id) as orderId from lab_research lr where lr.lab_sample_id = :sampleId

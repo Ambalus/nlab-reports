@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2020-04-20T21:13:15 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Worklist" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="89b1bec8-5971-4971-9bf5-dcc85dec0fb7">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="data_adapter\etalon.nlab.xml"/>
+	<parameter name="JSON_INPUT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.sources" class="java.util.List" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.date.pattern" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.number.pattern" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="JSON_LOCALE" class="java.util.Locale" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.locale.code" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="JSON_TIME_ZONE" class="java.util.TimeZone" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.timezone.id" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select sysdate as date_from
+    ,sysdate as date_to
+    ,'Биохимия' as lab_dep_text
+    ,null as workplaces_text
+    ,null as html_page
+from dual]]>
+	</queryString>
+	<field name="HTML_PAGE" class="java.lang.String">
+		<fieldDescription><![CDATA[HTML_PAGE]]></fieldDescription>
+	</field>
+	<field name="DATE_FROM" class="java.util.Date">
+		<fieldDescription><![CDATA[DATE_FROM]]></fieldDescription>
+	</field>
+	<field name="DATE_TO" class="java.util.Date">
+		<fieldDescription><![CDATA[DATE_TO]]></fieldDescription>
+	</field>
+	<field name="LAB_DEP_TEXT" class="java.lang.String">
+		<fieldDescription><![CDATA[LAB_DEP_TEXT]]></fieldDescription>
+	</field>
+	<field name="WORKPLACES_TEXT" class="java.lang.String">
+		<fieldDescription><![CDATA[WORKPLACES_TEXT]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="60">
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="20" uuid="0dd3bfd3-b7c8-4126-b12d-7e92969d138d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Период:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="90" height="20" uuid="e8261791-0566-4085-8ded-21916c57b294"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Отдел:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="90" height="20" uuid="5e49b470-cc64-450b-96bc-0d6d39929103"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Рабочие места:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="95" y="0" width="705" height="20" uuid="11a9b829-67b8-47d0-bf1e-77790dbc5b11"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT($F{DATE_FROM},"dd.MM.yyyy") + " - " + DATEFORMAT($F{DATE_TO},"dd.MM.yyyy")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="20" width="705" height="20" uuid="3c438267-434f-400a-9864-163594d11231"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAB_DEP_TEXT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="40" width="705" height="20" uuid="270f0fa7-ca26-4d79-abce-d9f7b801c3b1"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WORKPLACES_TEXT} == null ? "Все" : $F{WORKPLACES_TEXT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="494">
+			<componentElement>
+				<reportElement x="0" y="10" width="800" height="484" uuid="e9e0a06c-cfb3-4249-b08e-80d7faa72978"/>
+				<hc:html xmlns:hc="http://jasperreports.sourceforge.net/htmlcomponent" xsi:schemaLocation="http://jasperreports.sourceforge.net/htmlcomponent http://jasperreports.sourceforge.net/xsd/htmlcomponent.xsd" scaleType="RealSize" horizontalAlign="Left" verticalAlign="Top">
+					<hc:htmlContentExpression><![CDATA[$F{HTML_PAGE}]]></hc:htmlContentExpression>
+				</hc:html>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="title" fontName="Tahoma" fontSize="12" isBold="true"/>
+	<style name="control" hTextAlign="Center" vTextAlign="Middle" fontName="Tahoma" fontSize="12" isBold="true" isUnderline="false">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#C9C9C9"/>
+			<leftPen lineWidth="1.0" lineColor="#C9C9C9"/>
+			<bottomPen lineWidth="1.0" lineColor="#C9C9C9"/>
+			<rightPen lineWidth="1.0" lineColor="#C9C9C9"/>
+		</box>
+	</style>
+	<style name="ids" hTextAlign="Center" fontName="Tahoma" fontSize="10" isBold="true" isItalic="false">
+		<box>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+		</box>
+		<paragraph leftIndent="3" rightIndent="3"/>
+	</style>
+	<style name="header" forecolor="#2E2E2E" hTextAlign="Center" vTextAlign="Middle" fontName="Tahoma" fontSize="11" isBold="true">
+		<box>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+			<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#C9C9C9"/>
+		</box>
+	</style>
+	<style name="sample" fontName="Tahoma" hTextAlign="Center" fontSize="9">
+		<paragraph leftIndent="3" rightIndent="3"/>
+	</style>
+	<style name="patInfo" hTextAlign="Center" fontName="Tahoma" fontSize="9"/>
+	<style name="_header" fontName="Tahoma" fontSize="8"/>
+	<style name="_footer" fontName="Tahoma" fontSize="8"/>
+</jasperTemplate>

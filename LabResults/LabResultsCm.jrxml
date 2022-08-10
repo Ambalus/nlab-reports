@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2019-11-13T17:16:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LabResultsCm" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55f2a5fb-b675-4a67-bb7c-c6e13794d7dc">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ru.spb.reshenie.armlab.resulttype" value="UNIFIED"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NLabDataAdapter.xml"/>
+	<style name="Barcode" hImageAlign="Center" vImageAlign="Middle" fontName="Arial" fontSize="10"/>
+	<parameter name="LAB_SAMPLE_ID" class="java.lang.String"/>
+	<parameter name="ROOT_REPORT_PATH" class="java.lang.String"/>
+	<parameter name="EXECUTORS" class="java.lang.String"/>
+	<parameter name="RESEARCH_NOTE" class="java.lang.String"/>
+	<parameter name="VERIFIERS" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select null from dual]]>
+	</queryString>
+	<variable name="CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="None">
+		<variableExpression><![CDATA[$V{CURRENT_PAGE_NUMBER} != null ? $V{CURRENT_PAGE_NUMBER} + 1 : 1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<pageHeader>
+		<band height="14">
+			<staticText>
+				<reportElement x="0" y="0" width="35" height="14" uuid="50eae8a1-c5a4-40af-88f6-8242d213638b"/>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Откл.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="35" y="0" width="112" height="14" backcolor="#FFFFFF" uuid="80caf3bc-2b41-43ed-a948-e9d723a876d4"/>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Показатель]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="0" width="245" height="14" uuid="30ca74b6-612d-444e-8384-3b97fd9c42eb"/>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Результат]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="0" width="49" height="14" uuid="65280779-ab84-454c-b61d-3dd6db5a430a"/>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Ед.изм.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="0" width="112" height="14" uuid="5fa6bb6c-bec4-4ec2-872a-99d8c4d403aa"/>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Реф.интервал]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Immediate">
+			<subreport overflowType="Stretch">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="553" height="21" isRemoveLineWhenBlank="true" uuid="b8d241f1-a5d2-48b3-b6de-316d1af40cef"/>
+				<subreportParameter name="LAB_SAMPLE_ID">
+					<subreportParameterExpression><![CDATA[$P{LAB_SAMPLE_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ROOT_REPORT_PATH">
+					<subreportParameterExpression><![CDATA[$P{ROOT_REPORT_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{ROOT_REPORT_PATH} + "LabResultsCm_table.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="553" height="21" uuid="ad5e2ff5-73c2-4e85-a764-475d7debc1e1"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<summary>
+		<band height="47">
+			<subreport>
+				<reportElement x="0" y="21" width="553" height="26" isRemoveLineWhenBlank="true" uuid="cf811a98-2b2b-4cbb-9e2e-d4226fcae9b6"/>
+				<subreportParameter name="LAB_SAMPLE_ID">
+					<subreportParameterExpression><![CDATA[$P{LAB_SAMPLE_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{ROOT_REPORT_PATH} + "LabResultsCm_undoneSrv.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="168" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="c803917e-7e56-4f5c-ad1e-05ad257341c3">
+					<printWhenExpression><![CDATA[$P{RESEARCH_NOTE} != null && !$P{RESEARCH_NOTE}.trim().isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Lucida Console" size="8"/>
+				</textElement>
+				<text><![CDATA[Примечание к заказу:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="553" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="d954058f-4159-44cd-b4bd-cdccab2379db">
+					<printWhenExpression><![CDATA[$P{RESEARCH_NOTE} != null && !$P{RESEARCH_NOTE}.trim().isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="120" rightPadding="5">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Lucida Console" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RESEARCH_NOTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

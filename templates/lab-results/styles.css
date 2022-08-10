@@ -1,0 +1,197 @@
+/*
+    Внешние шрифты
+*/
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url(Ubuntu.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*
+    специфичные свойства css для библиотеки OpenHtmlToPdf
+*/
+
+@page {
+    /* размер и поля страницы */
+    size: A4 portrait;
+    margin: 95px 22px 60px 15px;
+
+    /* html элементы с id 'page-header' и 'page-footer' автоматически помещаются на каждую страницу,
+       при этом колонтитулы не учитываются в вычислении размеров страницы,
+       поэтому поля страницы должны быть не меньше размера соответствующих колонтитулов
+    */
+    @top-center {
+        content: element(page-header);
+    }
+    @bottom-left {
+        content: element(page-footer);
+    }
+
+    /* в качестве колонтитула можно указать произвольный текст в атрибуте 'content',
+       поддерживаются функции номеров страниц,
+       декорировать такой текст нужно отдельно, весь остальной css здесь не действует
+    */
+    @bottom-right {
+        font-family: Ubuntu;
+        font-size: 12px;
+        content: 'стр. ' counter(page) ' из ' counter(pages);
+    }
+}
+
+
+/* при разрыве таблицы, ее заголовок будет продублирован на следующей странице
+*/
+table {
+    -fs-table-paginate: paginate;
+}
+
+/* внутри этих элементов запрещен разрыв страницы,
+   если элемент не влезает, он будет полностью перенесен на следующую страницу
+*/
+tr, tbody, p, div {
+    page-break-inside: avoid;
+}
+
+
+/*
+    Общие свойства стандартных html элементов
+*/
+
+* {
+    font-size: 12px;
+    font-family: Ubuntu;
+}
+
+hr {
+    margin: 5px 0;
+}
+
+table {
+    border-collapse: collapse;
+    line-height: 1.3;
+}
+
+
+/*
+    Свойства конкретных элементов данного отчета
+*/
+
+#page-header {
+    padding-top: 14px;
+    position: running(page-header);
+}
+
+#page-header #contacts {
+    text-align: right;
+    line-height: 1.5;
+}
+
+#page-footer {
+    position: running(page-footer);
+}
+
+#stamp td {
+    text-align: center;
+    vertical-align: bottom;
+}
+
+
+#order-header {
+}
+
+#order-header td {
+    vertical-align: top;
+}
+
+#serv-notes {
+}
+
+#sample-info td {
+    vertical-align: top;
+}
+
+#cancel-info td {
+    vertical-align: top;
+}
+
+
+#mbio {
+    border-bottom: solid lightgrey 1px;
+    border-left: solid lightgrey 1px;
+    border-right: solid lightgrey 1px;
+}
+
+#mbio th {
+    border-top: solid lightgrey 1px;
+    border-bottom: solid lightgrey 1px;
+}
+
+#mbio td,
+#mbio th {
+    line-height: 20px;
+}
+
+#title {
+    font-weight: bold;
+    padding-top: 10px;
+    padding-left: 26px
+}
+
+#ab-table {
+    border-bottom: solid lightgrey 1px;
+    border-top: solid lightgrey 1px;
+    border-left: solid lightgrey 1px;
+    border-right: solid lightgrey 1px;
+}
+
+#ab-table .tr-border th {
+    border-bottom: solid lightgrey 1px;
+}
+
+#ab-table td,
+#ab-table th {
+    line-height: 20px;
+}
+
+#measures {
+    border-collapse: collapse;
+    border-bottom: solid lightgrey 1px;
+    border-left: solid lightgrey 1px;
+    border-right: solid lightgrey 1px;
+}
+
+#measures th,
+#measures td {
+    vertical-align: top;
+    line-height: 20px;
+    border-top: solid lightgrey 1px;
+}
+
+#measures .test-group td {
+    text-align: center;
+}
+
+#measures .no-border td {
+    border-top: 0px;
+}
+
+#conclusion th,
+#conclusion td {
+    vertical-align: top;
+}
+
+
+#executors th,
+#executors td {
+    vertical-align: top;
+}
+
+
+#undone td {
+    vertical-align: top;
+}
+
+

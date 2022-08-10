@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="title" fontName="Tahoma" fontSize="12" isBold="true"/>
+	<style name="bacteria group" forecolor="#2E2E2E" hTextAlign="Center" vTextAlign="Middle" fontName="Tahoma" fontSize="10" isBold="true">
+		<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		<box>
+			<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+		<paragraph leftIndent="2" rightIndent="2"/>
+	</style>
+	<style name="sample" fontName="Tahoma" fontSize="9">
+		<paragraph leftIndent="0" rightIndent="0"/>
+	</style>
+	<style name="indent" fontName="Tahoma" fontSize="2"/>
+	<style name="hAlignLeft" hTextAlign="Left" vTextAlign="Top" fontName="Tahoma" fontSize="10"/>
+	<style name="hAlignCenter" hTextAlign="Center" fontName="Tahoma" fontSize="10"/>
+	<style name="antibiotic" forecolor="#7D7D7D" fontName="Tahoma" fontSize="8"/>
+	<style name="antibioticCentered" forecolor="#7D7D7D" hTextAlign="Center" fontName="Tahoma" fontSize="8"/>
+	<style name="bottomLine" fill="Solid" isBlankWhenNull="false" fontName="Tahoma">
+		<box>
+			<bottomPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="hAlignRight" hTextAlign="Right" fontName="Tahoma"/>
+	<style name="_header" fontName="Tahoma" fontSize="8"/>
+	<style name="_footer" fontName="Tahoma" fontSize="8"/>
+</jasperTemplate>
